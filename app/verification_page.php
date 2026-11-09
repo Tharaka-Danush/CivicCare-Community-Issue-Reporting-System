@@ -1,0 +1,3 @@
+<?php
+$raw=(string)($_GET['token']??$_POST['verification_token']??'');head_html('Verify your email');
+?><main class="setup-card"><a class="brand" href="index.php">CivicCare</a><h1 style="margin-top:25px">Verify your email</h1><?php show_flash();if(!preg_match('/^[a-f0-9]{64}$/',$raw)):?><p>This verification link is invalid. Request a fresh link from My profile.</p><?php else:?><p>Choose Verify email to confirm the address associated with this link.</p><form method="post"><?php csrf();?><input type="hidden" name="action" value="verify_email"><input type="hidden" name="verification_token" value="<?=e($raw)?>"><button class="button">Verify email</button></form><?php endif;?><p><a class="text-link" href="index.php?page=login">Back to sign in</a></p></main></body></html>
