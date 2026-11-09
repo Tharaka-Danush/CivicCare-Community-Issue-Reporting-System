@@ -1,0 +1,6 @@
+'use strict';
+document.addEventListener('DOMContentLoaded',()=>{
+ const sidebar=document.getElementById('main-sidebar'),toggle=document.querySelector('.menu-toggle');
+ if(sidebar&&toggle){const small=matchMedia('(max-width:850px)');const sync=()=>{const open=sidebar.classList.contains('is-open');toggle.setAttribute('aria-expanded',String(open));sidebar.inert=small.matches&&!open;};small.addEventListener?.('change',sync);sync();toggle.addEventListener('click',()=>queueMicrotask(sync));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&sidebar.classList.contains('is-open')){sidebar.classList.remove('is-open');sync();toggle.focus();}});document.addEventListener('click',event=>{if(sidebar.classList.contains('is-open')&&!sidebar.contains(event.target)&&!toggle.contains(event.target)){sidebar.classList.remove('is-open');sync();}});}
+ document.querySelectorAll('img').forEach(image=>image.addEventListener('error',()=>{image.hidden=true;if(image.nextElementSibling?.classList.contains('workspace-image-error'))return;const message=document.createElement('span');message.className='workspace-image-error';message.textContent='Photo unavailable';image.after(message);},{once:true}));
+});
